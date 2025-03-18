@@ -1436,9 +1436,12 @@ section.${c}>footer { z-index: 1; }
 
 		var result = text.replace(/%\d*/g, s => {
 			let lvl = parseInt(s.substring(1), 10) - 1;
-			if (lvl !== 0) {
-				return `"counter(${this.numberingCounter(id, lvl)}, ${numformat})"`;
+			if (lvl === 0) {
+				return ""
 			}
+
+			return `"counter(${this.numberingCounter(id, lvl)}, ${numformat})"`;
+			
 		});
 
 		return `"${result}${suffMap[suff] ?? ""}"`;
